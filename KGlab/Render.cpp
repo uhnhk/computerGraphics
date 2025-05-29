@@ -253,10 +253,10 @@ void Render(double delta_time)
 
 	//настройка материала, все что рисуется ниже будет иметь этот метериал.
 	//массивы с настройками материала
-	float  amb[] = { 0.2, 0.2, 0.1, 1. };
-	float dif[] = { 0.4, 0.65, 0.5, 1. };
-	float spec[] = { 0.9, 0.8, 0.3, 1. };
-	float sh = 0.2f * 256;
+	float amb[] = { 0.05f, 0.05f, 0.05f, 1.0f };  
+	float dif[] = { 0.6f, 0.3f, 0.1f, 1.0f };     
+	float spec[] = { 0.6f, 0.3f, 0.1f, 1.0f };     
+	float sh = 30.0f;
 
 	//фоновая
 	glMaterialfv(GL_FRONT, GL_AMBIENT, amb);
@@ -273,31 +273,33 @@ void Render(double delta_time)
 
 	//============ РИСОВАТЬ ТУТ ==============
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_COLOR_MATERIAL);
+	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 	glBindTexture(GL_TEXTURE_2D, texId);
 	glBegin(GL_QUADS);
 	double A[]{ 0, 0, 0 };
-	double A1[]{ 0, 0, 10 };
+	double A1[]{ 0, 0, 15 };
 
 	double B[]{ 7, 5, 0 };
-	double B1[]{ 7, 5, 10 };
+	double B1[]{ 7, 5, 15 };
 
 	double C[]{ 1, 7, 0 };
-	double C1[]{ 1, 7, 10 };
+	double C1[]{ 1, 7, 15 };
 
 	double D[]{ -2, 3, 0 };
-	double D1[]{ -2, 3, 10 };
+	double D1[]{ -2, 3, 15 };
 
 	double E[]{ -7, 6, 0 };
-	double E1[]{ -7, 6, 10 };
+	double E1[]{ -7, 6, 15 };
 
 	double F[]{ -4, 2, 0 };
-	double F1[]{ -4, 2, 10 };
+	double F1[]{ -4, 2, 15 };
 
 	double G[]{ -8, -5, 0 };
-	double G1[]{ -8, -5, 10 };
+	double G1[]{ -8, -5, 15 };
 
 	double H[]{ 1, -7, 0 };
-	double H1[]{ 1, -7, 10 };
+	double H1[]{ 1, -7, 15 };
 
 	//дно
 	glBegin(GL_QUADS);
@@ -412,7 +414,7 @@ void Render(double delta_time)
 
 
 	glBegin(GL_LINES);
-	//вектор для дна
+	//нормаль для дна
 	glVertex3d(-2, 0, 0);
 	glVertex3d(-2, 0, -5);
 
@@ -453,9 +455,7 @@ void Render(double delta_time)
 	
 	std::wstringstream ss;
 	ss << std::fixed << std::setprecision(3);
-	ss << "T - " << (texturing ? L"[вкл]выкл  " : L" вкл[выкл] ") << L"текстур" << std::endl;
 	ss << "L - " << (lightning ? L"[вкл]выкл  " : L" вкл[выкл] ") << L"освещение" << std::endl;
-	ss << "A - " << (alpha ? L"[вкл]выкл  " : L" вкл[выкл] ") << L"альфа-наложение" << std::endl;
 	ss << L"F - Свет из камеры" << std::endl;
 	ss << L"G - двигать свет по горизонтали" << std::endl;
 	ss << L"G+ЛКМ двигать свет по вертекали" << std::endl;
