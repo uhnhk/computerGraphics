@@ -442,7 +442,7 @@ void Render(double delta_time)
 	glOrtho(0, gl.getWidth() - 1, 0, gl.getHeight() - 1, 0, 1);
 
 	//переключаемся на моделвью матрицу
-	glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_MODELVIEW); 
 	//сохраняем матрицу
 	glPushMatrix();
     //сбразываем все трансформации и настройки камеры загрузкой единичной матрицы
